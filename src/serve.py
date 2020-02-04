@@ -1,24 +1,22 @@
 # -*- coding: utf-8 -*-
-from __future__ import annotations
 
 # -- stdlib --
 import argparse
 import base64
-import logging
 import functools
+import logging
 import operator
 import re
 
 # -- third party --
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 import bjoern
 import msgpack
 import numpy as np
-import onnxruntime as rt
+import onnxruntime
 
 # -- own --
 from check import check_type
-
 
 # -- code --
 log = logging.getLogger('onnxrt-server')
@@ -53,7 +51,6 @@ class AppError(Exception):
         self.payload = {**payload, 'error': message}
 
 
-
 @app.errorhandler(AppError)
 def handle_app_error(e):
     response = jsonify(e.payload)
@@ -67,12 +64,12 @@ def report_exception(e):
     return {'error': str(e)}, 500
 
 
-@app.route('/v1/models/default')
+@app.route('/v1/status')
 def model_status():
     return 'not impl'
 
 
-@app.route('/v1/models/default/metadata')
+@app.route('/v1/meta')
 def model_metadata():
     inputs = [{
         'name':  i.name,
@@ -194,7 +191,8 @@ def decode_input(model_input, data, fmt):
 
 
 def make_output(results):
-    tp = parse_type(request.headers['Accept'])
+    accept = request.headers['Accept']
+    tp = parse_type(accept)
     if not tp:
         raise AppError("Invalid Accept", 406)
 
@@ -211,14 +209,16 @@ def make_output(results):
             raise Exception('WTF')
 
     if enc == 'msgpack':
-        return msgpack.dumps(rst), 200, {'Content-Type': 'application/msgpack'}
+        payload = msgpack.dumps(rst)
     elif enc == 'json':
-        return rst
+        payload = rst
     else:
         raise Exception('WTF')
 
+    return payload, 200, {'Content-Type': accept}
 
-@app.route('/v1/models/default:predict', methods=['POST'])
+
+@app.route('/v1/predict', methods=['POST'])
 def model_predict():
     r'''
     {
@@ -266,7 +266,7 @@ def model_predict():
 
 def load_model(path):
     global model
-    model = rt.InferenceSession(path)
+    model = onnxruntime.InferenceSession(path)
 
 
 def main():
