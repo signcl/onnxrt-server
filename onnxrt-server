@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z "$NVIDIA_VISIBLE_DEVICES" -o "$NVIDIA_VISIBLE_DEVICES" == "void" ]; then
+    pip install /wheel/onnxruntime-*.whl
+else
+    pip install /wheel/onnxruntime_gpu-*.whl
+fi
+
+exec python3 /onnxrt/serve.py $@
