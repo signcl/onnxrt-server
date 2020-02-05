@@ -1,0 +1,27 @@
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+SHELL ["/bin/bash", "-xc"]
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN true && \
+    apt-get update && \
+    apt-get -y upgrade && \
+    apt-get install -y locales python3 python3-dev python3-distutils curl libev-dev && \
+    locale-gen zh_CN.UTF-8 && \
+    python3 <(curl https://bootstrap.pypa.io/get-pip.py) && \
+    pip3 install -U 'poetry>=1.0.0' 'keyrings.alt>=3.4.0' && \
+    poetry config virtualenvs.create false && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    true
+
+ENV TERM xterm
+ENV LANG zh_CN.UTF-8
+ENV LANGUAGE zh_CN:en
+ENV LC_ALL zh_CN.UTF-8
+
+ADD tini /usr/bin/tini
+ADD src /onnxrt
+WORKDIR /onnxrt
+RUN rm -rf .venv && \
+    poetry install --no-dev && \
+    pip install 'onnxruntime-gpu>=1.1.1'

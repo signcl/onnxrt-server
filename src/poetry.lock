@@ -105,19 +105,6 @@ i18n = ["Babel (>=0.8)"]
 
 [[package]]
 category = "main"
-description = "LZ4 Bindings for Python"
-name = "lz4"
-optional = false
-python-versions = ">=3.5"
-version = "3.0.2"
-
-[package.extras]
-docs = ["sphinx (>=1.6.0)", "sphinx-bootstrap-theme"]
-flake8 = ["flake8"]
-tests = ["pytest (!=3.3.0)", "psutil", "pytest-cov"]
-
-[[package]]
-category = "main"
 description = "Safely add untrusted strings to HTML/XML markup."
 name = "markupsafe"
 optional = false
@@ -151,7 +138,7 @@ version = "1.18.1"
 [[package]]
 category = "main"
 description = "ONNX Runtime Python bindings"
-name = "onnxruntime"
+name = "onnxruntime-gpu"
 optional = false
 python-versions = "*"
 version = "1.1.1"
@@ -273,7 +260,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "c76782309d0eceb8123e047c4b4103dc8675efd2d929da2ce7b02d01925dac10"
+content-hash = "01bb1d726f3defa580e7617df62c30ab7515976914124eda300c061d47c7114f"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -311,37 +298,6 @@ itsdangerous = [
 jinja2 = [
     {file = "Jinja2-2.11.1-py2.py3-none-any.whl", hash = "sha256:b0eaf100007721b5c16c1fc1eecb87409464edc10469ddc9a22a27a99123be49"},
     {file = "Jinja2-2.11.1.tar.gz", hash = "sha256:93187ffbc7808079673ef52771baa950426fd664d3aad1d0fa3e95644360e250"},
-]
-lz4 = [
-    {file = "lz4-3.0.2-cp35-cp35m-macosx_10_6_intel.whl", hash = "sha256:b19d54be182e820e2db4e5cb686c940f27627335411762240fb052e50dd49436"},
-    {file = "lz4-3.0.2-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:c3046924708f48d5c733dfa3072636c1a3218e64f4cb14f3a36dd0512e94e94b"},
-    {file = "lz4-3.0.2-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:39f5c8ed88984a082ced527f31d7463261345bc2f16e6c844f29f691f32b1831"},
-    {file = "lz4-3.0.2-cp35-cp35m-manylinux2010_i686.whl", hash = "sha256:44a660a058afb2672ff21d206749512b07cd903be585c5937bb8258b832ea0d4"},
-    {file = "lz4-3.0.2-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:2a9d290946ac934003b446f5e4843888b3acc2387f6fdb82dca434a1cf2ea16c"},
-    {file = "lz4-3.0.2-cp35-cp35m-win32.whl", hash = "sha256:e3962332a9eeb21ca46974d90e96f264ab83a00b2f1c2e268c4e27992079df20"},
-    {file = "lz4-3.0.2-cp35-cp35m-win_amd64.whl", hash = "sha256:03625daa0a2355de032d3cfc5476ee3dd269569597beaff833a541819fd961fb"},
-    {file = "lz4-3.0.2-cp36-cp36m-macosx_10_6_intel.whl", hash = "sha256:c2ebb5990c5553349ebdfb178cf7570c6c624d6dc6a99694f679dbe2f63b7e62"},
-    {file = "lz4-3.0.2-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:75abbee94cba1792be598177f19633dcddb14d7addca440510dc47c2e877e02b"},
-    {file = "lz4-3.0.2-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:ebbb5a4081cf7c859b6c717ace8b306b5d65aa77d8a2918ba86883ab6329971f"},
-    {file = "lz4-3.0.2-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:63c5ddef3624c53f14689cf80591f2b20ad58272c678bf7e9ae8580cdb8569a6"},
-    {file = "lz4-3.0.2-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:fc26c3902df2a8bfc0c8451bf08e265aa586fdf8f64add1d5286a12cd91e4e4a"},
-    {file = "lz4-3.0.2-cp36-cp36m-win32.whl", hash = "sha256:e694f00533c62c9152b315449f64d66f507b01aa25f51cb8974ea18bcfb49413"},
-    {file = "lz4-3.0.2-cp36-cp36m-win_amd64.whl", hash = "sha256:cab28aa10c38a0248a4f5e9072d6870db89c4437f34cffcec01173d734f841d0"},
-    {file = "lz4-3.0.2-cp37-cp37m-macosx_10_6_intel.whl", hash = "sha256:c4945851b622058d10f06d7c0b04bba36161b1687ab2ed6439c593bd057c16c4"},
-    {file = "lz4-3.0.2-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:abad0e22775d2fa66c4ccdbf0ecd08e1ebe0f651875733384c0bd3ed1758fdcd"},
-    {file = "lz4-3.0.2-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d334c749cb2d19fcd87cd9d229d7f6282ce9a886236f6e384d7c956cac9c0ca3"},
-    {file = "lz4-3.0.2-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:337a44c7b735b1daf9291c296dc153712052b5383892348def2237c0bf121fbc"},
-    {file = "lz4-3.0.2-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:d9a1ad2ef2df7a132903244c7fe0aa61127141b472345fb0fe69f18e662204bb"},
-    {file = "lz4-3.0.2-cp37-cp37m-win32.whl", hash = "sha256:f24bce37ec6a7ee3a6c6475c7b4a3f0efcf1b429c7868547e4d2f2864971127f"},
-    {file = "lz4-3.0.2-cp37-cp37m-win_amd64.whl", hash = "sha256:4316230442d85fa13195a9c75c3ed36d67f553d44e9ea0ff29b6144881cde0dd"},
-    {file = "lz4-3.0.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:f284f17f468c6eba66dbb3adcace7163c0c63bdba5acccca62432bc6ee964357"},
-    {file = "lz4-3.0.2-cp38-cp38-manylinux1_i686.whl", hash = "sha256:35da62c552be82566a341afa7af694f5bd28a03725210478d82aae1e29cd5f93"},
-    {file = "lz4-3.0.2-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:02a079226470a6794d30bc17c68b885dbec8206a8fedddbc008560829c2b6eac"},
-    {file = "lz4-3.0.2-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:7c744227319652f9a28c4d9747f33a1c4305adb26c6f66d48e001b406a51b659"},
-    {file = "lz4-3.0.2-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:96fec7eafd3208052cc75ebfe371f3a52a29d1c1b055f390d789ce3c67f0221f"},
-    {file = "lz4-3.0.2-cp38-cp38-win32.whl", hash = "sha256:e73bf66b7df44228d042e1242accbf6f748d9b575b75da3bd66bb103df353721"},
-    {file = "lz4-3.0.2-cp38-cp38-win_amd64.whl", hash = "sha256:4232eb505ac4198e58dce393dc1eae31e7344dbb8167ac4831eb0009a653e971"},
-    {file = "lz4-3.0.2.tar.gz", hash = "sha256:9c9f6a8b71c18c24bd83537a4d616f0301623a5e98db7c7ca956d608e1bcd4c7"},
 ]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
@@ -428,16 +384,13 @@ numpy = [
     {file = "numpy-1.18.1-cp38-cp38-win_amd64.whl", hash = "sha256:39d2c685af15d3ce682c99ce5925cc66efc824652e10990d2462dfe9b8918c6a"},
     {file = "numpy-1.18.1.zip", hash = "sha256:b6ff59cee96b454516e47e7721098e6ceebef435e3e21ac2d6c3b8b02628eb77"},
 ]
-onnxruntime = [
-    {file = "onnxruntime-1.1.1-cp35-cp35m-macosx_10_13_x86_64.whl", hash = "sha256:5f3af795e59696eb1f949a797f5e37680be610f41630be328c41a4806b2e36d8"},
-    {file = "onnxruntime-1.1.1-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:f0bf160a517a88a3bd949bbbfa6641c191697bee21ecd5221915c38b3283fc78"},
-    {file = "onnxruntime-1.1.1-cp35-cp35m-win_amd64.whl", hash = "sha256:8ab1330b1df0a3a30dd77ee11a1df2d5f409c1e3d382474f073a6aa5ff6d6a98"},
-    {file = "onnxruntime-1.1.1-cp36-cp36m-macosx_10_13_x86_64.whl", hash = "sha256:94bf7d825fd5109392a1c49987a6bb606268edc9cd585e7f086c8d6f7043fe86"},
-    {file = "onnxruntime-1.1.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:ba4890a29d7b07eabc61f01f9c2c4509808bf6aa507452897eb469ad32139291"},
-    {file = "onnxruntime-1.1.1-cp36-cp36m-win_amd64.whl", hash = "sha256:14014f9bc65fd2321a528b4ba9a068e2a8e4b3bda68d1d4e1fbeda2f061bb305"},
-    {file = "onnxruntime-1.1.1-cp37-cp37m-macosx_10_13_x86_64.whl", hash = "sha256:f80937708bc0957a83206675751fd1080660f25a16880e58b6f80f06f05d3f0b"},
-    {file = "onnxruntime-1.1.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:b378b3e10a107d77f3c902f069266abb69af3f569ba6965f79c66253ea99b53a"},
-    {file = "onnxruntime-1.1.1-cp37-cp37m-win_amd64.whl", hash = "sha256:4f8d0f07a48e3edc5560e8761859bc6e5ff17187f3dff7d9be5e57dd979d2f11"},
+onnxruntime-gpu = [
+    {file = "onnxruntime_gpu-1.1.1-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:5d1e6dd4b0f164bdfe93975a510cc456bb0f34d9a799d6c8a2689e9dcb885914"},
+    {file = "onnxruntime_gpu-1.1.1-cp35-cp35m-win_amd64.whl", hash = "sha256:7d2c895b99a12649ff64fb98d1b2a35d38e91f790695d0ad3bcbe0bae1b50227"},
+    {file = "onnxruntime_gpu-1.1.1-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:02181cb749db007266727625e9be4cd78dee41291767b8997438a7183aa1e353"},
+    {file = "onnxruntime_gpu-1.1.1-cp36-cp36m-win_amd64.whl", hash = "sha256:5e0eff6c10f836cabdaf944f785b8baacf50ea9fc8667cf18a9bdc7817099c95"},
+    {file = "onnxruntime_gpu-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:7cb483cdcf5108fe0297f8e771f1d9cae1a40f0bcdfd237ebf5b2ae4c9eb98ca"},
+    {file = "onnxruntime_gpu-1.1.1-cp37-cp37m-win_amd64.whl", hash = "sha256:8d495ec604e03e378c7a5b57eede91dc12035ccfc7bec22057400fbdf32671d8"},
 ]
 packaging = [
     {file = "packaging-20.1-py2.py3-none-any.whl", hash = "sha256:170748228214b70b672c581a3dd610ee51f733018650740e98c7df862a583f73"},
