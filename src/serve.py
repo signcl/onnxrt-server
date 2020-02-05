@@ -74,13 +74,15 @@ def model_metadata():
     inputs = [{
         'name':  i.name,
         'shape': i.shape,
-        'type':  i.type,
+        'onnx_type':  i.type,
+        'numpy_type': ONNX_TO_NP_TYPE[i.type],
     } for i in model.get_inputs()]
 
     outputs = [{
         'name':  i.name,
         'shape': i.shape,
-        'type':  i.type,
+        'onnx_type':  i.type,
+        'numpy_type': ONNX_TO_NP_TYPE[i.type],
     } for i in model.get_outputs()]
 
     meta = model.get_modelmeta()
