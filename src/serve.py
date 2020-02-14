@@ -157,7 +157,7 @@ def get_payload():
 
     fmt, enc = tp
     if enc == 'msgpack':
-        req = msgpack.unpackb(request.data, encoding='utf-8')
+        req = msgpack.unpackb(request.data, raw=False)
     elif enc == 'json':
         req = request.json
     else:
@@ -173,7 +173,7 @@ def decode_input(model_input, data, fmt):
 
     if fmt == 'plain':
         a = np.asarray(data, dtype=tp)
-        if a.shape != i.shape:
+        if tuple(a.shape) != tuple(i.shape):
             raise AppError(f'Input "{i.name}" shape mismatch: provided({list(a.shape)}) != expected({list(i.shape)})', 400)
         return a
 
