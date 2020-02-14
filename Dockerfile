@@ -18,6 +18,7 @@ ENV TERM xterm
 ENV LANG zh_CN.UTF-8
 ENV LANGUAGE zh_CN:en
 ENV LC_ALL zh_CN.UTF-8
+ENV NVIDIA_VISIBLE_DEVICES void
 
 ADD tini /usr/bin/tini
 ADD src/poetry.lock /onnxrt/poetry.lock
