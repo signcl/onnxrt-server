@@ -157,7 +157,7 @@ def get_payload():
 
     fmt, enc = tp
     if enc == 'msgpack':
-        req = msgpack.loads(request.data)
+        req = msgpack.unpackb(request.data, encoding='utf-8')
     elif enc == 'json':
         req = request.json
     else:
@@ -211,7 +211,7 @@ def make_output(results):
             raise Exception('WTF')
 
     if enc == 'msgpack':
-        payload = msgpack.dumps(rst)
+        payload = msgpack.packb(rst, use_bin_type=True)
     elif enc == 'json':
         payload = rst
     else:
