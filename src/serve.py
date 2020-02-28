@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 
 # -- stdlib --
+from logging import StreamHandler
 import argparse
 import base64
 import functools
 import logging
 import operator
 import re
+import sys
 
 # -- third party --
 from flask import Flask, jsonify, request
+from requestlogger import ApacheFormatter, WSGILogger
 import bjoern
 import msgpack
 import numpy as np
@@ -17,6 +20,7 @@ import onnxruntime
 
 # -- own --
 from check import check_type
+
 
 # -- code --
 log = logging.getLogger('onnxrt-server')
@@ -279,7 +283,10 @@ def main():
     options = parser.parse_args()
 
     load_model(options.model)
-    bjoern.run(app, options.host, options.port)
+
+    wrapped = WSGILogger(app, [StreamHandler(stream=sys.stdout)], ApacheFormatter())
+
+    bjoern.run(wrapped, options.host, options.port)
 
 
 if __name__ == '__main__':

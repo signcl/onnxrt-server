@@ -6,4 +6,4 @@ else
     pip install /wheel/onnxruntime_gpu-*.whl
 fi
 
-exec python3 /onnxrt/serve.py $@
+exec python3 /onnxrt/serve.py "$@"

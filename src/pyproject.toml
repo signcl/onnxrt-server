@@ -10,6 +10,7 @@ bjoern = "^3.1.0"
 flask = "^1.1.1"
 msgpack = "^0.6.2"
 numpy = "^1.18.1"
+wsgi-request-logger = "^0.4.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3.5"
