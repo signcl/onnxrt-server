@@ -5,6 +5,7 @@ from logging import StreamHandler
 import argparse
 import base64
 import functools
+import io
 import logging
 import operator
 import re
@@ -136,7 +137,7 @@ def parse_type(tp):
 
     fmt = fmt or DEFAULT_FMT.get(enc)
 
-    if fmt not in ('bytes', 'base64', 'plain'):
+    if fmt not in ('bytes', 'base64', 'plain', 'npy'):
         return None
 
     COMPATIBLE  = (
@@ -146,6 +147,7 @@ def parse_type(tp):
         ('bytes',  'msgpack'),
         ('base64', 'msgpack'),
         ('plain',  'msgpack'),
+        ('npy',  'msgpack'),
     )
 
     if (fmt, enc) not in COMPATIBLE:
@@ -171,7 +173,7 @@ def get_payload():
 
 
 def decode_input(model_input, data, fmt):
-    assert fmt in ('plain', 'base64', 'bytes')
+    assert fmt in ('plain', 'base64', 'bytes', 'npy')
     i = model_input
     tp = getattr(np, ONNX_TO_NP_TYPE[i.type])
 
@@ -180,6 +182,15 @@ def decode_input(model_input, data, fmt):
         if tuple(a.shape) != tuple(i.shape):
             raise AppError(f'Input "{i.name}" shape mismatch: provided({list(a.shape)}) != expected({list(i.shape)})', 400)
         return a
+
+    if fmt == 'npy':
+        if not isinstance(data, bytes):
+            raise AppError(f'Input "{i.name}" is not bytes')
+        try:
+            a = np.load(io.BytesIO(data))
+            return a
+        except:
+            raise AppError(f'Input "{i.name}" failed to parse')
 
     if fmt == 'base64':
         d = base64.b64decode(data)

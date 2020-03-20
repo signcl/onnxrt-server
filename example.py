@@ -50,3 +50,23 @@ resp = requests.post(
     }, use_bin_type=True)
 )
 print(resp.json())
+
+# -----
+import msgpack
+import io
+
+npydata = io.BytesIO()
+np.save(npydata, a)
+
+resp = requests.post(
+    'http://localhost:8001/v1/predict',
+    headers={
+        'Accept': 'application/plain+json',
+        'Content-Type': 'application/npy+msgpack',
+    },
+    data=msgpack.packb({
+        'inputs': {'x': npydata.getvalue()},
+        'outputs': ['y'],
+    }, use_bin_type=True)
+)
+print(resp.json())
