@@ -143,11 +143,12 @@ def parse_type(tp):
     COMPATIBLE  = (
         ('base64', 'json'),
         ('plain',  'json'),
+        ('npy',  'json'),
 
         ('bytes',  'msgpack'),
         ('base64', 'msgpack'),
         ('plain',  'msgpack'),
-        ('npy',  'msgpack'),
+        ('npy',  'msgpack')
     )
 
     if (fmt, enc) not in COMPATIBLE:
@@ -218,6 +219,10 @@ def make_output(results):
     for k, v in results.items():
         if fmt == 'bytes':
             rst[k] = v.tobytes()
+        elif fmt == 'npy':
+            bytesdata = io.BytesIO()
+            np.save(bytesdata, v, allow_pickle=False)
+            rst[k] = bytesdata.getvalue().decode('latin-1')
         elif fmt == 'base64':
             rst[k] = base64.b64encode(v.tobytes()).decode('utf-8')
         elif fmt == 'plain':

@@ -61,7 +61,7 @@ np.save(npydata, a)
 resp = requests.post(
     'http://localhost:8001/v1/predict',
     headers={
-        'Accept': 'application/plain+json',
+        'Accept': 'application/npy+json',
         'Content-Type': 'application/npy+msgpack',
     },
     data=msgpack.packb({
