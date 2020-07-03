@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 SHELL ["/bin/bash", "-xc"]
 
 ENV DEBIAN_FRONTEND=noninteractive
